@@ -37,6 +37,7 @@ export const DataProvider = ({ children }) => {
       value={{
         data,
         error,
+        last: data && data.events ? data.events[data.events.length - 1] : null,
       }}
     >
       {children}
