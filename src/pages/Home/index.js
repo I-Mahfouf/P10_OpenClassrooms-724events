@@ -115,7 +115,7 @@ const Page = () => {
     </main>
     <footer data-testid="footer" className="row">
       <div data-testid="lastEvent" className="col presta">
-        <h3>Notre derniére prestation</h3>
+        <h3>Notre dernière prestation</h3>
         {last?.title && (
         <EventCard
           imageSrc={last?.cover}
@@ -149,10 +149,10 @@ const Page = () => {
       <div className="col description">
         <Logo size="large" />
         <p>
-          Une agence événementielle propose des prestations de service
-          spécialisées dans la conception et l&apos;organisation de divers événements
+          Une agence événementielle qui propose des prestations de service
+          spécialisées dans la conception et l'organisation de divers événements
           tels que des événements festifs, des manifestations sportives et
-          culturelles, des événements professionnels
+          culturelles, des événements professionnels.
         </p>
       </div>
     </footer>
