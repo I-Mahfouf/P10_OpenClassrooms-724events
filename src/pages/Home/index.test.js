@@ -29,16 +29,28 @@ describe("When Form is created", () => {
 
 
 describe("When a page is created", () => {
-  it("a list of events is displayed", () => {
-    // to implement
-  })
-  it("a list a people is displayed", () => {
-    // to implement
-  })
-  it("a footer is displayed", () => {
-    // to implement
-  })
-  it("an event card, with the last event, is displayed", () => {
-    // to implement
-  })
+  it("a list of events is displayed", async () => {
+    render(<Home />);
+    const eventImages = screen.getAllByTestId("card-image-testid");
+    expect(eventImages.length).toBeGreaterThan(0);
+  }); // Si chaque événement est représenté par une image -
+  // alors avoir un nombre d'images supérieur à zéro signifie qu'il y a au moins une image associée à un événement //
+
+  it("a list of people is displayed", async () => {
+    render(<Home />);
+    const peopleList = screen.getAllByTestId("people-card");
+    expect(peopleList.length).toBe(6);
+  });
+
+  it("a footer is displayed", async () => {
+    render(<Home />);
+    const footerDisplayed = screen.getByTestId("footer");
+    expect(footerDisplayed).toBeInTheDocument();
+  });
+
+  it("an event card, with the last event, is displayed", async () => {
+    render(<Home />);
+    const lastEventCard = screen.getByTestId("lastEvent");
+    expect(lastEventCard).toBeInTheDocument();
+  });
 });
