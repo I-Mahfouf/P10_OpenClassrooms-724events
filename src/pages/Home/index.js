@@ -12,8 +12,10 @@ import Form from "../../containers/Form";
 import Modal from "../../containers/Modal";
 import { useData } from "../../contexts/DataContext";
 
+// Utilisation du contexte des données pour récupérer la dernière donnée disponible //
 const Page = () => {
   const {last} = useData()
+
   return <>
     <header>
       <Menu />
@@ -115,6 +117,7 @@ const Page = () => {
     </main>
     <footer data-testid="footer" className="row">
       <div data-testid="lastEvent" className="col presta">
+        {/* Affichage de la dernière prestation si disponible */}
         <h3>Notre dernière prestation</h3>
         {last?.title && (
         <EventCard

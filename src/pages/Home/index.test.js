@@ -38,19 +38,25 @@ describe("When a page is created", () => {
 
   it("a list of people is displayed", async () => {
     render(<Home />);
+    // Récupère toutes les cartes de personnes sur la page //
     const peopleList = screen.getAllByTestId("people-card");
+    // Vérifie s'il y a exactement 6 cartes de personnes affichées //
     expect(peopleList.length).toBe(6);
   });
 
   it("a footer is displayed", async () => {
     render(<Home />);
+    // Vérifie si le pied de page est affiché sur la page //
     const footerDisplayed = screen.getByTestId("footer");
     expect(footerDisplayed).toBeInTheDocument();
   });
 
   it("an event card, with the last event, is displayed", async () => {
     render(<Home />);
+    // Vérifie si la carte du dernier événement est affichée sur la page //
     const lastEventCard = screen.getByTestId("lastEvent");
     expect(lastEventCard).toBeInTheDocument();
   });
 });
+
+

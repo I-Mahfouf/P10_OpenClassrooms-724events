@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
+
 import { useState } from "react";
 import PropTypes from "prop-types";
 
@@ -13,13 +14,16 @@ const Select = ({
   label,
   type = "normal",
 }) => {
-  const [value, setValue] = useState();
-  const [collapsed, setCollapsed] = useState(true);
+  const [value, setValue] = useState(); // État local pour la valeur sélectionnée //
+  const [collapsed, setCollapsed] = useState(true); // État local pour indiquer si la liste est repliée ou non //
+
+  // Fonction pour changer la valeur sélectionnée //
   const changeValue = (newValue) => {
     onChange(newValue);
     setValue(newValue);
-    setCollapsed(!collapsed);
+    setCollapsed(!collapsed); 
   };
+
   return (
     <div className={`SelectContainer ${type}`} data-testid="select-testid">
       {label && <div className="label">{label}</div>}
@@ -30,12 +34,14 @@ const Select = ({
           </li>
           {!collapsed && (
             <>
+              {/* Option "Toutes" */}
               {!titleEmpty && (
                 <li onClick={() => changeValue(null)}>
                   <input defaultChecked={!value} name="selected" type="radio" />{" "}
                   Toutes
                 </li>
               )}
+              {/* Options de sélection */}
               {selection.map((s) => (
                 <li key={s} onClick={() => changeValue(s)}>
                   <input
@@ -50,13 +56,14 @@ const Select = ({
           )}
         </ul>
         <input type="hidden" value={value || ""} name={name} />
+        {/* Bouton pour replier/déplier la liste */}
         <button
           type="button"
           data-testid="collapse-button-testid"
           className={collapsed ? "open" : "close"}
           onClick={(e) => {
             e.preventDefault();
-            setCollapsed(!collapsed);
+            setCollapsed(!collapsed); 
           }}
         >
           <Arrow />
@@ -66,6 +73,7 @@ const Select = ({
   );
 };
 
+// Flèche utilisée dans le bouton de repli/dépli //
 const Arrow = () => (
   <svg
     width="21"
@@ -81,15 +89,17 @@ const Arrow = () => (
   </svg>
 );
 
+// Spécifications des propriétés du composant Select
 Select.propTypes = {
-  selection: PropTypes.arrayOf(PropTypes.string).isRequired,
-  onChange: PropTypes.func,
+  selection: PropTypes.arrayOf(PropTypes.string).isRequired, 
+  onChange: PropTypes.func, // Fonction appelée lorsqu'une sélection est modifiée //
   name: PropTypes.string,
-  titleEmpty: PropTypes.bool,
-  label: PropTypes.string,
-  type: PropTypes.string,
+  titleEmpty: PropTypes.bool, 
+  label: PropTypes.string, 
+  type: PropTypes.string, 
 }
 
+// Valeurs par défaut des propriétés du composant Select //
 Select.defaultProps = {
   onChange: () => null,
   titleEmpty: false,
